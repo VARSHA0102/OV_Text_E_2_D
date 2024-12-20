@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decryption</title>
+    <style>
+        /* CSS for Decryption Page */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Container Styling */
+        .container {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            text-align: center;
+            width: 420px;
+            animation: fadeIn 1.2s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Heading Styling */
+        h1 {
+            font-size: 26px;
+            color:  #ff6f61;
+            margin-bottom: 20px;
+            font-weight: bold;
+            animation: bounceIn 1.5s;
+        }
+        
+        /* Label Styling */
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            text-align: left;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        
+        /* Input Field Styling */
+        input[type="password"],
+        input[type="file"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid  #ff6f61;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: #005ea2;
+        }
+        
+        /* Submit Button Styling */
+        input[type="submit"] {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 15px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #ff4d4d;
+            transform: scale(1.05);
+        }
+        
+        /* Result Text Styling */
+        p {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #555;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Bounce-in Animation for Heading */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Bouncing and moving circles */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 105, 135, 0.8);
+            animation: moveAround 6s ease-in-out infinite;
+            z-index: 0;
+            opacity: 0.7;
+        }
+        
+        @keyframes moveAround {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(100px, -50px);
+            }
+            50% {
+                transform: translate(-150px, 100px);
+            }
+            75% {
+                transform: translate(50px, 150px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        
+        /* Generating multiple circles */
+        .circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-duration: 3s;
+            background-color: rgba(99, 195, 228, 0.8); /* Blue */
+        }
+        
+        .circle:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            top: 30%;
+            right: 5%;
+            animation-duration: 2.5s;
+            background-color: rgba(255, 211, 128, 0.8); /* Yellow */
+        }
+        
+        .circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 10%;
+            left: 25%;
+            animation-duration: 2s;
+            background-color: rgba(162, 255, 132, 0.8); /* Green */
+        }
+        
+        .circle:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            bottom: 0;
+            right: 5%;
+            animation-duration: 3.5s;
+            background-color: rgba(255, 177, 77, 0.8); /* Orange */
+        }
+        
+        .circle:nth-child(5) {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 60%;
+            animation-duration: 2.7s;
+            background-color: rgba(255, 105, 135, 0.8); /* Pink */
+        }
+        
+        .circle:nth-child(6) {
+            width: 50px;
+            height: 50px;
+            top: 80%;
+            left: 15%;
+            animation-duration: 1.8s;
+            background-color: rgba(173, 255, 235, 0.8); /* Light Blue */
+        }
+        
+        .circle:nth-child(7) {
+            width: 70px;
+            height: 70px;
+            bottom: 15%;
+            right: 30%;
+            animation-duration: 2.2s;
+            background-color: rgba(245, 174, 174, 0.8); /* Light Pink */
+        }
+        
+        .circle:nth-child(8) {
+            width: 90px;
+            height: 90px;
+            top: 10%;
+            right: 20%;
+            animation-duration: 2.9s;
+            background-color: rgba(162, 132, 255, 0.8); /* Purple */
+        }
+        
+        .circle:nth-child(9) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 5%;
+            animation-duration: 3.1s;
+            background-color: rgba(244, 124, 124, 0.8); /* Red */
+        }
+        @keyframes moveAround {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(80px, -60px);
+            }
+            50% {
+                transform: translate(-90px, 120px);
+            }
+            75% {
+                transform: translate(50px, -80px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DECRYPTION AN IMAGE</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="password">PASSWORD:</label>
+            <input type="password" name="password" id="password" required><br>
+            <label for="encoded_image">UPLOAD FILE:</label>
+            <input type="file" name="encoded_image" id="encoded_image" required><br>
+            <input type="submit" value="CONVERT IMG TO TEXT"><br>
+        </form>
+        {% if result %}
+            <p>{{ result }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Floating Circles for Background Animation -->
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+</body>
+
+</html>
